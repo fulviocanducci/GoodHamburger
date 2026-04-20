@@ -1,6 +1,6 @@
 ﻿using Application.Interfaces;
 using Application.Services;
-using Application.Validators;
+using Application.Validators.Menu;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;

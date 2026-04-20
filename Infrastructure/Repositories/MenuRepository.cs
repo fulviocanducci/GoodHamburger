@@ -16,6 +16,7 @@ public class MenuRepository(DatabaseContext database) : IMenuRepository
         Menu entity = model.Adapt<Menu>();
         await database.Menus.AddAsync(entity);
         await database.SaveChangesAsync();
+        database.Entry(entity).Reference(m => m.Category).Load();
         return entity.Adapt<MenuView>();
     }
 
