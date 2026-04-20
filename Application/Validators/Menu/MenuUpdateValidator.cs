@@ -22,10 +22,11 @@ public class MenuUpdateValidator : AbstractValidator<MenuUpdate>
             .NotEmpty().WithMessage("Digite o id da categoria.")
             .NotNull().WithMessage("Digite o id da categoria.")
             .Must(categoryId => MenuValidatorAll.CategoryIdExists(categoryId, _categoryService)).WithMessage("Categoria não encontrada.");
-
         RuleFor(c => c.Value).Cascade(CascadeMode.Stop)
             .NotEmpty().WithMessage("Digite o preço do cardapio.")
             .NotNull().WithMessage("Digite o preço do cardapio.")
-            .GreaterThan(0).WithMessage("Preço do cardapio precisa ser maior que 0.");
+            .GreaterThan(0).WithMessage("Preço do cardapio precisa ser maior que 0.")
+            .PrecisionScale(5, 2, true).WithMessage("Valor deve ter no máximo 5 dígitos e 2 casas decimais")
+            .InclusiveBetween(0, 999.99m).WithMessage("Valor deve estar entre 0 e 999.99.");
     }
 }
