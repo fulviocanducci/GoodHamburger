@@ -19,13 +19,13 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
     {
         try
         {
-            var categories = await categoryService.GetAsync();
-            return Ok(categories);
+            var result = await categoryService.GetAsync();
+            return Ok(result);
         }
         catch (Exception)
         {
             throw;
-        }        
+        }
     }
 
     [HttpGet("{id}")]
@@ -36,17 +36,17 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
     {
         try
         {
-            var category = await categoryService.GetAsync(id);
-            if (category == null)
+            var result = await categoryService.GetAsync(id);
+            if (result == null)
             {
                 return NotFound();
             }
-            return Ok(category);
+            return Ok(result);
         }
         catch (Exception)
         {
             throw;
-        }        
+        }
     }
 
     [HttpPost]
@@ -71,7 +71,7 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
         catch (Exception)
         {
             throw;
-        }        
+        }
     }
 
     [HttpPut("{id}")]
@@ -86,19 +86,20 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
             {
                 return BadRequest();
             }
-            bool status = await categoryService.UpdateAsync(model);
-            return Ok(new { status });
+            bool result = await categoryService.UpdateAsync(model);
+            return Ok(new { result });
         }
         catch (Exception)
         {
             throw;
         }
-        
+
     }
 
     [HttpDelete("{id}")]
     [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)] 
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Delete(int id)
     {
@@ -108,12 +109,12 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
             {
                 return BadRequest();
             }
-            bool status = await categoryService.DeleteAsync(id);
-            return status ? Ok(new { status }) : NotFound();
+            bool result = await categoryService.DeleteAsync(id);
+            return result ? Ok(new { result }) : NotFound();
         }
         catch (Exception)
         {
             throw;
-        }        
+        }
     }
 }

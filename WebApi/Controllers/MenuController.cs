@@ -19,8 +19,8 @@ namespace WebApi.Controllers
         {
             try
             {
-                var menus = await menuService.GetAsync();
-                return Ok(menus);
+                var result = await menuService.GetAsync();
+                return Ok(result);
             }
             catch (Exception)
             {
@@ -36,12 +36,12 @@ namespace WebApi.Controllers
         {
             try
             {
-                var menu = await menuService.GetAsync(id);
-                if (menu == null)
+                var result = await menuService.GetAsync(id);
+                if (result == null)
                 {
                     return NotFound();
                 }
-                return Ok(menu);
+                return Ok(result);
             }
             catch (Exception)
             {
@@ -86,8 +86,8 @@ namespace WebApi.Controllers
                 {
                     return BadRequest();
                 }
-                bool status = await menuService.UpdateAsync(model);
-                return Ok(new { status });
+                bool result = await menuService.UpdateAsync(model);
+                return Ok(new { result });
             }
             catch (Exception)
             {
@@ -99,6 +99,7 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)
         {
@@ -108,8 +109,8 @@ namespace WebApi.Controllers
                 {
                     return BadRequest();
                 }
-                bool status = await menuService.DeleteAsync(id);
-                return status ? Ok(new { status }) : NotFound();
+                bool result = await menuService.DeleteAsync(id);
+                return result ? Ok(new { result }) : NotFound();
             }
             catch (Exception)
             {

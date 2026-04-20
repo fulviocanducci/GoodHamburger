@@ -1,45 +1,104 @@
 ﻿using Application.DTOs.Order;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Produces(MediaTypeNames.Application.Json)]
     public class OrderController(IOrderService orderService) : ControllerBase
     {
         private readonly IOrderService orderService = orderService;
 
         [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<OrderView>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get()
         {
-            var result = await orderService.GetAsync();
-            return Ok(result);
+            try
+            {
+                var result = await orderService.GetAsync();
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(IEnumerable<OrderView>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await orderService.GetAsync(id);
-            return Ok(result);
+            try
+            {
+                var result = await orderService.GetAsync(id);
+                if (result == null)
+                {
+                    return NotFound();
+                }
+                return Ok(result);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(IEnumerable<OrderView>), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Create([FromBody] OrderCreate model)
         {
-            var result = await orderService.CreateAsync(model);
-            return Ok(result); 
+            try
+            {
+                if (model == null)
+                {
+                    return BadRequest();
+                }
+                var view = await orderService.CreateAsync(model);
+                if (view == null)
+                {
+                    return BadRequest();
+                }
+                return CreatedAtAction(nameof(Get), new { id = view.Id }, view);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await orderService.DeleteAsync(id);
-            if (result)
+            try
             {
-                return NoContent();
+                if (id == 0)
+                {
+                    return BadRequest();
+                }
+                bool result = await orderService.DeleteAsync(id);
+                return result ? Ok(new { result }) : NotFound();
             }
-            return NotFound();
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
