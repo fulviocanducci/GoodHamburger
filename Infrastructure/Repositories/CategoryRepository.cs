@@ -6,7 +6,6 @@ using Mapster;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
-
 public sealed class CategoryRepository(DatabaseContext database) : ICategoryRepository
 {
     private readonly DatabaseContext database = database;

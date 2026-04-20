@@ -15,6 +15,10 @@ public class OrderMapping : IEntityTypeConfiguration<Order>
             .HasColumnName("name")
             .HasMaxLength(100)
             .IsRequired();
+        builder.Property(x => x.Discount)
+            .HasColumnName("discount")
+            .IsRequired()
+            .HasDefaultValue(0);
         builder.Property(x => x.Total)
             .HasColumnName("total")
             .HasPrecision(5, 2)

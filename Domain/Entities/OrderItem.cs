@@ -9,12 +9,21 @@ public class OrderItem
         Value = value;
     }
 
-    public OrderItem(int id, int orderId, int menuId, decimal value )
+    public OrderItem(int orderId, int menuId, decimal value, Menu menu)
+    {
+        OrderId = orderId;
+        MenuId = menuId;
+        Value = value;
+        Menu= menu;
+    }
+
+    public OrderItem(int id, int orderId, int menuId, decimal value, Menu menu)
     {
         Id = id;
         OrderId = orderId;
         MenuId = menuId;
         Value = value;
+        Menu = menu;
     }
 
     public int Id { get; private set; }

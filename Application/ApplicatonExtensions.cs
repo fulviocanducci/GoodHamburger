@@ -15,6 +15,7 @@ public static class ApplicatonExtensions
         services.AddValidatorsFromAssemblyContaining<MenuCreateValidator>();
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IMenuService, MenuService>();
+        services.AddScoped<IOrderService, OrderService>();
 
         return services;
     }
