@@ -2,6 +2,7 @@
 using Application.Services;
 using Application.Validators;
 using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application;
@@ -10,7 +11,7 @@ public static class ApplicatonExtensions
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        //services.AddFluentValidationAutoValidation();
+        services.AddFluentValidationAutoValidation();
         services.AddValidatorsFromAssemblyContaining<MenuCreateValidator>();
         services.AddScoped<ICategoryService, CategoryService>();
         

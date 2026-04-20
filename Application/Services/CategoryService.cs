@@ -27,8 +27,18 @@ public class CategoryService(ICategoryRepository categoryRepository) : ICategory
         return await categoryRepository.GetAsync(id);
     }
 
+    public async Task<bool> IsNameExistAsync(string name)
+    {
+        return await categoryRepository.IsNameExistAsync(name);
+    }
+
     public async Task<bool> UpdateAsync(CategoryUpdate model)
     {
         return await categoryRepository.UpdateAsync(model);
+    }
+
+    public bool IsNameExist(string name)
+    {
+        return categoryRepository.IsNameExist(name);
     }
 }

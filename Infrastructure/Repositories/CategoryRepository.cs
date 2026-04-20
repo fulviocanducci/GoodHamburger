@@ -34,10 +34,20 @@ public sealed class CategoryRepository(DatabaseContext database) : ICategoryRepo
         return await database.Categories.Where(c => c.Id == id).ProjectToType<CategoryView>().FirstOrDefaultAsync();
     }
 
+    public async Task<bool> IsNameExistAsync(string name)
+    {
+        return await database.Categories.AnyAsync(c => c.Name == name); 
+    }
+
     public async Task<bool> UpdateAsync(CategoryUpdate model)
     {
         Category entity = model.Adapt<Category>();
         database.Entry(entity).State = EntityState.Modified;
         return await database.SaveChangesAsync() > 0;
+    }
+
+    public bool IsNameExist(string name)
+    {
+        return database.Categories.Any(c => c.Name == name);
     }
 }

@@ -9,4 +9,6 @@ public interface ICategoryService
     Task<CategoryView> CreateAsync(CategoryCreate model);
     Task<bool> UpdateAsync(CategoryUpdate model);
     Task<IEnumerable<CategoryView>> GetAllAsync();
+    Task<bool> IsNameExistAsync(string name);
+    bool IsNameExist(string name);
 }
