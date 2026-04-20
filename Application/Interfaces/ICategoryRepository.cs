@@ -11,4 +11,5 @@ public interface ICategoryRepository
     Task<IEnumerable<CategoryView>> GetAllAsync();
     Task<bool> IsNameExistAsync(string name);
     bool IsNameExist(string name);
+    bool IsIdExist(int id);
 }

@@ -29,6 +29,7 @@ public static class InfrastructureExtension
         services.AddScoped<IMapper, ServiceMapper>();
 
         services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<IMenuRepository, MenuRepository>();
 
         return services;
     }

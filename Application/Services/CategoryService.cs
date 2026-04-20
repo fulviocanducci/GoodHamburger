@@ -41,4 +41,9 @@ public class CategoryService(ICategoryRepository categoryRepository) : ICategory
     {
         return categoryRepository.IsNameExist(name);
     }
+
+    public bool IsIdExist(int id)
+    {
+        return categoryRepository.IsIdExist(id);
+    }
 }

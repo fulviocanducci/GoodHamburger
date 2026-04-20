@@ -21,7 +21,7 @@ public sealed class CategoryRepository(DatabaseContext database) : ICategoryRepo
 
     public async Task<bool> DeleteAsync(int id)
     {
-        return (await database.Categories.Where(c => c.Id == id).ExecuteDeleteAsync()) > 0; 
+        return (await database.Categories.Where(c => c.Id == id).ExecuteDeleteAsync()) > 0;
     }
 
     public async Task<IEnumerable<CategoryView>> GetAllAsync()
@@ -36,7 +36,7 @@ public sealed class CategoryRepository(DatabaseContext database) : ICategoryRepo
 
     public async Task<bool> IsNameExistAsync(string name)
     {
-        return await database.Categories.AnyAsync(c => c.Name == name); 
+        return await database.Categories.AnyAsync(c => c.Name == name);
     }
 
     public async Task<bool> UpdateAsync(CategoryUpdate model)
@@ -49,5 +49,10 @@ public sealed class CategoryRepository(DatabaseContext database) : ICategoryRepo
     public bool IsNameExist(string name)
     {
         return database.Categories.Any(c => c.Name == name);
+    }
+
+    public bool IsIdExist(int id)
+    {
+        return database.Categories.Any(c => c.Id == id);
     }
 }
