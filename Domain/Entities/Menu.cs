@@ -7,6 +7,7 @@ public class Menu
         Name = name;
         CategoryId = categoryId;
         Value = value;
+        OrdersItems = new HashSet<OrderItem>();
     }
 
     public Menu(int id, string name, int categoryId, decimal value)
@@ -15,6 +16,7 @@ public class Menu
         Name = name;
         CategoryId = categoryId;
         Value = value;
+        OrdersItems = new HashSet<OrderItem>();
     }
 
     public int Id { get; private set; }
@@ -22,4 +24,6 @@ public class Menu
     public int CategoryId { get; private set; }
     public decimal Value { get; private set; }
     public Category? Category { get; private set; }
+
+    public ICollection<OrderItem> OrdersItems { get; private set; }
 }
