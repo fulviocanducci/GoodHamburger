@@ -17,9 +17,9 @@ public class MenuService(IMenuRepository menuRepository) : IMenuService
         return await menuRepository.DeleteAsync(id);
     }
 
-    public async Task<IEnumerable<MenuView>> GetAllAsync()
+    public async Task<IEnumerable<MenuView>> GetAsync()
     {
-        return await menuRepository.GetAllAsync();
+        return await menuRepository.GetAsync();
     }
 
     public async Task<MenuView?> GetAsync(int id)

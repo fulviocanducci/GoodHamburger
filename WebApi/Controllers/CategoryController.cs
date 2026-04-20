@@ -19,7 +19,7 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
     {
         try
         {
-            var categories = await categoryService.GetAllAsync();
+            var categories = await categoryService.GetAsync();
             return Ok(categories);
         }
         catch (Exception)

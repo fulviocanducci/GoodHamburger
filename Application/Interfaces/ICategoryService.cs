@@ -8,7 +8,7 @@ public interface ICategoryService
     Task<bool> DeleteAsync(int id);
     Task<CategoryView> CreateAsync(CategoryCreate model);
     Task<bool> UpdateAsync(CategoryUpdate model);
-    Task<IEnumerable<CategoryView>> GetAllAsync();
+    Task<IEnumerable<CategoryView>> GetAsync();
     Task<bool> IsNameExistAsync(string name);
     bool IsNameExist(string name);
     bool IsIdExist(int id);

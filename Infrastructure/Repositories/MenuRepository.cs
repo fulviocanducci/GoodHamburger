@@ -24,7 +24,7 @@ public class MenuRepository(DatabaseContext database) : IMenuRepository
         return await database.Menus.Where(m => m.Id == id).ExecuteDeleteAsync() > 0;
     }
 
-    public async Task<IEnumerable<MenuView>> GetAllAsync()
+    public async Task<IEnumerable<MenuView>> GetAsync()
     {
         return await database.Menus.Include(m => m.Category)
             .ProjectToType<MenuView>().ToListAsync();

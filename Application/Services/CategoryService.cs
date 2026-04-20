@@ -17,9 +17,9 @@ public class CategoryService(ICategoryRepository categoryRepository) : ICategory
         return await categoryRepository.DeleteAsync(id);
     }
 
-    public async Task<IEnumerable<CategoryView>> GetAllAsync()
+    public async Task<IEnumerable<CategoryView>> GetAsync()
     {
-        return await categoryRepository.GetAllAsync();
+        return await categoryRepository.GetAsync();
     }
 
     public async Task<CategoryView?> GetAsync(int id)

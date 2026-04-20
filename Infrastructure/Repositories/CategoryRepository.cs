@@ -24,7 +24,7 @@ public sealed class CategoryRepository(DatabaseContext database) : ICategoryRepo
         return (await database.Categories.Where(c => c.Id == id).ExecuteDeleteAsync()) > 0;
     }
 
-    public async Task<IEnumerable<CategoryView>> GetAllAsync()
+    public async Task<IEnumerable<CategoryView>> GetAsync()
     {
         return await database.Categories.ProjectToType<CategoryView>().ToListAsync();
     }

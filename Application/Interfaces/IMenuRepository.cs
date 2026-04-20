@@ -8,5 +8,5 @@ public interface IMenuRepository
     Task<bool> DeleteAsync(int id);
     Task<MenuView> CreateAsync(MenuCreate model);
     Task<bool> UpdateAsync(MenuUpdate model);
-    Task<IEnumerable<MenuView>> GetAllAsync();
+    Task<IEnumerable<MenuView>> GetAsync();
 }
