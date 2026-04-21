@@ -30,5 +30,5 @@ Referências:
 2. Crie um banco de dados para a aplicação, por exemplo, `goodhamburger`.
 3. Abre o Projeto em seu Visual Studio 2026 ou IDE de sua preferência (Visual Studio Code com os plugins necessários). 
 4. Configure a string de conexão no arquivo `appsettings.json` da aplicação, substituindo os valores de usuário, senha e nome do banco de dados conforme necessário.
-5. Dentro do github tem uma pasta SQL, baixe o arquivos SQL e execute no banco criado no seu banco MySQL. 
+5. Dentro do github tem uma pasta SQL, baixe o arquivo SQL `banco.sql` e execute no banco criado no seu banco MySQL. 
 6. Execute o seu projeto na IDE.
