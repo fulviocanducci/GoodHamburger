@@ -56,9 +56,19 @@ O projeto foi desenvolvido sem a ajuda de IA, nas seguintes camadas:
 Com o auxilio de IA, foram gerados os seguintes items:
 
 - Camada de Testes Unitários (TestGoodHamburger)
+
+Eu gerei um padrão de teste e pedi para IA continuar o modelo para todos os controllers, serviços e repositórios, o que me ajudou a acelerar o processo de criação dos testes unitários.
+
 - Readme.md
 
+Fez propostas de estrutura e conteúdo para o arquivo README.md, que foi revisado e editado para se adequar ao projeto.
+
+### Sobre IA
+
+Eu utilizo a IA como apoiador para acelerar o processo de desenvolvimento, especialmente em tarefas repetitivas ou que exigem a criação de muitos arquivos semelhantes, como testes unitários. A IA me ajuda a manter um padrão consistente e a economizar tempo, permitindo que eu me concentre mais na lógica de negócio e na arquitetura do projeto. No entanto, todas as decisões de design e implementação são feitas por mim, garantindo que o projeto atenda às minhas expectativas e requisitos específicos.
+
 ### Considerações Finais
+
 Este projeto é uma implementação básica de um sistema de gerenciamento de pedidos para uma hamburgueria, utilizando a arquitetura hexagonal para promover o desacoplamento e a testabilidade. Ele serve como um ponto de partida para quem deseja aprender sobre essa arquitetura e como aplicá-la em projetos reais. Sinta-se à vontade para expandir e melhorar o projeto conforme necessário!
 
 ### Imagem do Projeto
