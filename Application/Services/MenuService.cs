@@ -28,6 +28,16 @@ public class MenuService(IMenuRepository menuRepository) : IMenuService
         return await menuRepository.GetAsync(id);
     }
 
+    public Task<IEnumerable<MenuView>> GetAsync(string name)
+    {
+        return menuRepository.GetAsync(name);
+    }
+
+    public bool IsIdExist(int id)
+    {
+        return menuRepository.IsIdExist(id);
+    }
+
     public async Task<Result> UpdateAsync(MenuUpdate model)
     {
         return await menuRepository.UpdateAsync(model);

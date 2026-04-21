@@ -3,7 +3,7 @@ using Application.DTOs.Order;
 
 namespace Application.Interfaces;
 
-public interface IOrderService
+public interface IOrderRepository
 {
     Task<OrderView?> GetAsync(int id);
     Task<IEnumerable<OrderView>> GetAsync();

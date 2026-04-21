@@ -3,7 +3,7 @@
 public class Result(bool status)
 {
     public bool Status { get; set; } = status;
-    public string Message => Status ? "Success" : "Error";
+    public string Message => Status ? "Success" : "Error or NotFound or Invalid";
 
     public static Result Success()
     {

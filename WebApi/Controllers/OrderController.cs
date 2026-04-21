@@ -92,8 +92,12 @@ namespace WebApi.Controllers
                 {
                     return BadRequest();
                 }
-                bool result = await orderService.DeleteAsync(id);
-                return result ? Ok(new { result }) : NotFound();
+                if (!orderService.IsIdExist(id))
+                {
+                    return NotFound();
+                }
+                var result = await orderService.DeleteAsync(id);
+                return Ok(result);
             }
             catch (Exception)
             {

@@ -52,4 +52,9 @@ public sealed class OrderRepository(DatabaseContext database) : IOrderRepository
             .ProjectToType<OrderView>()
             .ToListAsync();
     }
+
+    public bool IsIdExist(int id)
+    {
+        return database.Orders.Any(o => o.Id == id);
+    }
 }

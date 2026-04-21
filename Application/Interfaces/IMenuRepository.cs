@@ -10,4 +10,6 @@ public interface IMenuRepository
     Task<MenuView> CreateAsync(MenuCreate model);
     Task<Result> UpdateAsync(MenuUpdate model);
     Task<IEnumerable<MenuView>> GetAsync();
+    Task<IEnumerable<MenuView>> GetAsync(string name);
+    bool IsIdExist(int id);
 }

@@ -86,8 +86,8 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
             {
                 return BadRequest();
             }
-            bool result = await categoryService.UpdateAsync(model);
-            return Ok(new { result });
+            var result = await categoryService.UpdateAsync(model);
+            return Ok(result);
         }
         catch (Exception)
         {
@@ -109,8 +109,12 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
             {
                 return BadRequest();
             }
-            bool result = await categoryService.DeleteAsync(id);
-            return result ? Ok(new { result }) : NotFound();
+            if (!categoryService.IsIdExist(id))
+            {
+                return NotFound();
+            }
+            var result = await categoryService.DeleteAsync(id);
+            return Ok(result);
         }
         catch (Exception)
         {

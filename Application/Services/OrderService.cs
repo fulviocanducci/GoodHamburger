@@ -26,4 +26,9 @@ public class OrderService(IOrderRepository orderRepository) : IOrderService
     {
         return await orderRepository.GetAsync();
     }
+
+    public bool IsIdExist(int id)
+    {
+        return orderRepository.IsIdExist(id);
+    }
 }

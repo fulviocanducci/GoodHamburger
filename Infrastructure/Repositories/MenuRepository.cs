@@ -39,6 +39,20 @@ public class MenuRepository(DatabaseContext database) : IMenuRepository
             .ProjectToType<MenuView>().FirstOrDefaultAsync();
     }
 
+    public async Task<IEnumerable<MenuView>> GetAsync(string name)
+    {
+        return await database.Menus
+            .AsNoTracking()
+            .Where(m => m.Name.Contains(name))
+                .Include(m => m.Category)
+            .ProjectToType<MenuView>().ToListAsync();
+    }
+
+    public bool IsIdExist(int id)
+    {
+        return database.Menus.Any(m => m.Id == id);
+    }
+
     public async Task<Result> UpdateAsync(MenuUpdate model)
     {
         Menu entity = model.Adapt<Menu>();

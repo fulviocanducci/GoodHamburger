@@ -1,5 +1,6 @@
 ﻿using Application.DTOs.Menu;
 using Application.Interfaces;
+using Application.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -49,6 +50,23 @@ namespace WebApi.Controllers
             }
         }
 
+        [HttpGet("filter")]
+        [ProducesResponseType(typeof(IEnumerable<MenuView>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Get([FromQuery] string name)
+        {
+            try
+            {
+                var result = await menuService.GetAsync(name);                
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(MenuView), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -86,8 +104,8 @@ namespace WebApi.Controllers
                 {
                     return BadRequest();
                 }
-                bool result = await menuService.UpdateAsync(model);
-                return Ok(new { result });
+                var result = await menuService.UpdateAsync(model);
+                return Ok(result);
             }
             catch (Exception)
             {
@@ -109,8 +127,12 @@ namespace WebApi.Controllers
                 {
                     return BadRequest();
                 }
-                bool result = await menuService.DeleteAsync(id);
-                return result ? Ok(new { result }) : NotFound();
+                if (!menuService.IsIdExist(id))
+                {
+                    return NotFound();
+                }
+                var result = await menuService.DeleteAsync(id);
+                return Ok(result);
             }
             catch (Exception)
             {
