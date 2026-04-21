@@ -16,11 +16,10 @@ namespace Infrastructure
                   .Map(dest => dest.Name, src => src.Name)
                   .Map(dest => dest.Id, src => src.Id);
 
-
             config.NewConfig <Order, OrderView>()
                 .Map(dest => dest.OrderItems, src => src.OrdersItems);   
             config.NewConfig<OrderItem, OrderItemView>()
-                .Map(dest => dest.MenuName, src => src.Menu.Name);
+                .Map(dest => dest.MenuName, src => src.Menu!.Name);
         }
     }
 }

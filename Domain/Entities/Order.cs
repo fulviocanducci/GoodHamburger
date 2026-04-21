@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities;
+﻿using Shared.Constants;
+
+namespace Domain.Entities;
 public class Order
 {
     public Order(string name, decimal total)
@@ -34,9 +36,9 @@ public class Order
     public void CalculateDiscount()
     {
         decimal totalForItems = OrdersItems.Sum(i => i.Value);
-        bool hasSandwich = OrdersItems.Any(x => x.Menu != null && x.Menu.Category != null && x.Menu.Category.Name.Contains("Sanduiches"));
-        bool hasPotatoes = OrdersItems.Any(x => x.Menu != null && x.Menu.Category != null && x.Menu.Category.Name.Contains("Batata"));
-        bool hasDrink = OrdersItems.Any(x => x.Menu != null && x.Menu.Category != null && x.Menu.Category.Name.Contains("Refrigerante"));
+        bool hasSandwich = OrdersItems.Any(x => x.Menu != null && x.Menu.Category != null && x.Menu.Category.Name.Contains(MenuConstant.SandwichCategory));
+        bool hasPotatoes = OrdersItems.Any(x => x.Menu != null && x.Menu.Category != null && x.Menu.Category.Name.Contains(MenuConstant.PotatoesCategory));
+        bool hasDrink = OrdersItems.Any(x => x.Menu != null && x.Menu.Category != null && x.Menu.Category.Name.Contains(MenuConstant.DrinkCategory));
         decimal discount = 0;
         if (hasSandwich && hasPotatoes && hasDrink)
         {

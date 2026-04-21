@@ -2,5 +2,6 @@
   <Project Path="Application/Application.csproj" />
   <Project Path="Domain/Domain.csproj" />
   <Project Path="Infrastructure/Infrastructure.csproj" />
+  <Project Path="Shared/Shared.csproj" Id="7cce8c57-4848-4c0b-8e5f-878bbaf808e3" />
   <Project Path="WebApi/WebApi.csproj" />
 </Solution>

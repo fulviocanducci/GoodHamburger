@@ -48,6 +48,11 @@ public class MenuRepository(DatabaseContext database) : IMenuRepository
             .ProjectToType<MenuView>().ToListAsync();
     }
 
+    public bool IsIdAndCategoryNameExist(int id, string categoryName)
+    {
+        return database.Menus.Any(m => m.Id == id && m.Category != null && m.Category.Name == categoryName);
+    }
+
     public bool IsIdExist(int id)
     {
         return database.Menus.Any(m => m.Id == id);

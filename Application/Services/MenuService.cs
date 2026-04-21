@@ -33,6 +33,11 @@ public class MenuService(IMenuRepository menuRepository) : IMenuService
         return menuRepository.GetAsync(name);
     }
 
+    public bool IsIdAndCategoryNameExist(int id, string categoryName)
+    {
+        return menuRepository.IsIdAndCategoryNameExist(id, categoryName);
+    }
+
     public bool IsIdExist(int id)
     {
         return menuRepository.IsIdExist(id);

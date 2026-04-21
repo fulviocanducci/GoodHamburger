@@ -12,4 +12,5 @@ public interface IMenuRepository
     Task<IEnumerable<MenuView>> GetAsync();
     Task<IEnumerable<MenuView>> GetAsync(string name);
     bool IsIdExist(int id);
+    bool IsIdAndCategoryNameExist(int id, string categoryName);
 }

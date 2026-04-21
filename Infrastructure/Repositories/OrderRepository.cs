@@ -1,4 +1,5 @@
-﻿using Application.DTOs;
+﻿using System.Linq;
+using Application.DTOs;
 using Application.DTOs.Order;
 using Application.Interfaces;
 using Domain.Entities;
@@ -13,10 +14,11 @@ public sealed class OrderRepository(DatabaseContext database) : IOrderRepository
     private readonly DatabaseContext database = database;
     public async Task<OrderView> CreateAsync(OrderCreate model)
     {
+        var menuIds = model.OrderItems?.Select(i => i.MenuId) ?? Enumerable.Empty<int>();
         List<OrderItem> ordersItems = database
             .Menus
-            .Include(c => c.Category)
-            .Where(c => model.OrderItems.Select(i => i.MenuId).Contains(c.Id))
+            .Include(c => c.Category!)
+            .Where(c => menuIds.Contains(c.Id))
             .Select(m => new OrderItem(0, m.Id, m.Value, m)).ToList();
         Order entity = new(model.Name, 0, ordersItems);
         await database.Orders.AddAsync(entity);
@@ -36,8 +38,8 @@ public sealed class OrderRepository(DatabaseContext database) : IOrderRepository
     {
         return await database.Orders
             .Include(o => o.OrdersItems)
-                .ThenInclude(oi => oi.Menu)
-                    .ThenInclude(m => m.Category)
+                .ThenInclude(s => s.Menu!)
+                    .ThenInclude(m => m!.Category)
             .Where(o => o.Id == id)
             .ProjectToType<OrderView>()
             .FirstOrDefaultAsync();
@@ -47,8 +49,8 @@ public sealed class OrderRepository(DatabaseContext database) : IOrderRepository
     {
         return await database.Orders
             .Include(o => o.OrdersItems)
-                .ThenInclude(oi => oi.Menu)
-                    .ThenInclude(m => m.Category)
+                .ThenInclude(oi => oi.Menu!)
+                    .ThenInclude(m => m!.Category)
             .ProjectToType<OrderView>()
             .ToListAsync();
     }
