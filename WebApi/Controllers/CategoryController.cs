@@ -2,7 +2,7 @@
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
-
+using Swashbuckle.AspNetCore.Annotations;
 namespace WebApi.Controllers;
 
 [Route("api/[controller]")]
@@ -13,8 +13,9 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
     private readonly ICategoryService categoryService = categoryService;
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<CategoryView>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<CategoryView>), StatusCodes.Status200OK, Description = "Retorna Lista de Categorias")]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(Summary = "Categorias - Lista de Categorias", Description = "Retorna Lista de Categorias")]
     public async Task<IActionResult> Get()
     {
         try
@@ -29,9 +30,10 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
     }
 
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(CategoryView), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CategoryView), StatusCodes.Status200OK, Description = "Retorna os detalhes de uma categoria específica")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(Summary = "Categorias - Detalhes da Categoria", Description = "Retorna os detalhes de uma categoria específica")]
     public async Task<IActionResult> Get(int id)
     {
         try
@@ -50,9 +52,10 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(CategoryView), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(CategoryView), StatusCodes.Status201Created, Description = "Retorna a categoria criada")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(Summary = "Categorias - Criar Categoria", Description = "Cria uma nova categoria")]
     public async Task<IActionResult> Create([FromBody] CategoryCreate model)
     {
         try
@@ -75,9 +78,10 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
     }
 
     [HttpPut("{id}")]
-    [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(bool), StatusCodes.Status200OK, Description = "Atualiza uma categoria existente")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(Summary = "Categorias - Atualizar Categoria", Description = "Atualiza uma categoria existente")]
     public async Task<IActionResult> Update(int id, [FromBody] CategoryUpdate model)
     {
         try
@@ -97,10 +101,11 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
     }
 
     [HttpDelete("{id}")]
-    [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(bool), StatusCodes.Status200OK, Description = "Exclui uma categoria existente")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)] 
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Description = "Categoria não encontrada")]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Description = "Erro interno do servidor")]
+    [SwaggerOperation(Summary = "Categorias - Excluir Categoria", Description = "Exclui uma categoria existente")]
     public async Task<IActionResult> Delete(int id)
     {
         try

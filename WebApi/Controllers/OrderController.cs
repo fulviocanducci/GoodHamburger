@@ -1,6 +1,7 @@
 ﻿using Application.DTOs.Order;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using System.Net.Mime;
 
 namespace WebApi.Controllers
@@ -13,8 +14,9 @@ namespace WebApi.Controllers
         private readonly IOrderService orderService = orderService;
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<OrderView>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(IEnumerable<OrderView>), StatusCodes.Status200OK, Description = "Retorna Lista de Pedidos")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Description = "Erro interno do servidor")]
+        [SwaggerOperation(Summary = "Pedidos - Lista de Pedidos", Description = "Retorna Lista de Pedidos")]
         public async Task<IActionResult> Get()
         {
             try
@@ -30,9 +32,10 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(IEnumerable<OrderView>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(OrderView), StatusCodes.Status200OK, Description = "Retorna os detalhes de um pedido específico")]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Description = "Pedido não encontrado")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Description = "Erro interno do servidor")]
+        [SwaggerOperation(Summary = "Pedidos - Detalhes do Pedido", Description = "Retorna os detalhes de um pedido específico")]
         public async Task<IActionResult> Get(int id)
         {
             try
@@ -54,9 +57,10 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(IEnumerable<OrderView>), StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(OrderView), StatusCodes.Status201Created, Description = "Retorna o pedido criado")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Description = "Requisição inválida")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Description = "Erro interno do servidor")]
+        [SwaggerOperation(Summary = "Pedidos - Criar Pedido", Description = "Cria um novo pedido")]
         public async Task<IActionResult> Create([FromBody] OrderCreate model)
         {
             try
@@ -80,10 +84,11 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK, Description = "Exclui um pedido existente")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Description = "Requisição inválida")]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Description = "Pedido não encontrado")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Description = "Erro interno do servidor")]
+        [SwaggerOperation(Summary = "Pedidos - Excluir Pedido", Description = "Exclui um pedido existente")]
         public async Task<IActionResult> Delete(int id)
         {
             try

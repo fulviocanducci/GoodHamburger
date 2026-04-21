@@ -4,7 +4,7 @@ using WebApi;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c => c.EnableAnnotations());
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddApplication();

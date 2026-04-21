@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Application.DTOs;
+﻿using Application.DTOs;
 using Application.DTOs.Order;
 using Application.Interfaces;
 using Domain.Entities;
@@ -28,9 +27,9 @@ public sealed class OrderRepository(DatabaseContext database) : IOrderRepository
 
     public async Task<Result> DeleteAsync(int id)
     {
-        return 
+        return
             await database.OrderItems.Where(o => o.OrderId == id).ExecuteDeleteAsync() > 0
-            && 
+            &&
             await database.Orders.Where(o => o.Id == id).ExecuteDeleteAsync() > 0;
     }
 
