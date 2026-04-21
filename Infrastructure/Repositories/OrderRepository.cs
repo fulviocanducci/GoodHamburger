@@ -1,4 +1,5 @@
-﻿using Application.DTOs.Order;
+﻿using Application.DTOs;
+using Application.DTOs.Order;
 using Application.Interfaces;
 using Domain.Entities;
 using Infrastructure.Data;
@@ -23,7 +24,7 @@ public sealed class OrderRepository(DatabaseContext database) : IOrderRepository
         return entity.Adapt<OrderView>();
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task<Result> DeleteAsync(int id)
     {
         return 
             await database.OrderItems.Where(o => o.OrderId == id).ExecuteDeleteAsync() > 0

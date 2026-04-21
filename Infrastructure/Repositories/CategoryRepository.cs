@@ -1,4 +1,5 @@
-﻿using Application.DTOs.Category;
+﻿using Application.DTOs;
+using Application.DTOs.Category;
 using Application.Interfaces;
 using Domain.Entities;
 using Infrastructure.Data;
@@ -18,7 +19,7 @@ public sealed class CategoryRepository(DatabaseContext database) : ICategoryRepo
         return entity.Adapt<CategoryView>();
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task<Result> DeleteAsync(int id)
     {
         return (await database.Categories.Where(c => c.Id == id).ExecuteDeleteAsync()) > 0;
     }
@@ -38,7 +39,7 @@ public sealed class CategoryRepository(DatabaseContext database) : ICategoryRepo
         return await database.Categories.AnyAsync(c => c.Name == name);
     }
 
-    public async Task<bool> UpdateAsync(CategoryUpdate model)
+    public async Task<Result> UpdateAsync(CategoryUpdate model)
     {
         Category entity = model.Adapt<Category>();
         database.Entry(entity).State = EntityState.Modified;

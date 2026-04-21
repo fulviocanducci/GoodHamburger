@@ -1,4 +1,5 @@
-﻿using Application.DTOs.Order;
+﻿using Application.DTOs;
+using Application.DTOs.Order;
 using Application.Interfaces;
 
 namespace Application.Services;
@@ -11,7 +12,7 @@ public class OrderService(IOrderRepository orderRepository) : IOrderService
         return await orderRepository.CreateAsync(model);
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task<Result> DeleteAsync(int id)
     {
         return await orderRepository.DeleteAsync(id);
     }

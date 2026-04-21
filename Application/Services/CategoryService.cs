@@ -1,4 +1,5 @@
-﻿using Application.DTOs.Category;
+﻿using Application.DTOs;
+using Application.DTOs.Category;
 using Application.Interfaces;
 
 namespace Application.Services;
@@ -12,7 +13,7 @@ public class CategoryService(ICategoryRepository categoryRepository) : ICategory
         return await categoryRepository.CreateAsync(model);
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task<Result> DeleteAsync(int id)
     {
         return await categoryRepository.DeleteAsync(id);
     }
@@ -32,7 +33,7 @@ public class CategoryService(ICategoryRepository categoryRepository) : ICategory
         return await categoryRepository.IsNameExistAsync(name);
     }
 
-    public async Task<bool> UpdateAsync(CategoryUpdate model)
+    public async Task<Result> UpdateAsync(CategoryUpdate model)
     {
         return await categoryRepository.UpdateAsync(model);
     }

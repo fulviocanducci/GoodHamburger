@@ -1,4 +1,5 @@
-﻿using Application.DTOs.Menu;
+﻿using Application.DTOs;
+using Application.DTOs.Menu;
 using Application.Interfaces;
 using Domain.Entities;
 using Infrastructure.Data;
@@ -20,7 +21,7 @@ public class MenuRepository(DatabaseContext database) : IMenuRepository
         return entity.Adapt<MenuView>();
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task<Result> DeleteAsync(int id)
     {
         return await database.Menus.Where(m => m.Id == id).ExecuteDeleteAsync() > 0;
     }
@@ -38,7 +39,7 @@ public class MenuRepository(DatabaseContext database) : IMenuRepository
             .ProjectToType<MenuView>().FirstOrDefaultAsync();
     }
 
-    public async Task<bool> UpdateAsync(MenuUpdate model)
+    public async Task<Result> UpdateAsync(MenuUpdate model)
     {
         Menu entity = model.Adapt<Menu>();
         database.Entry(entity).State = EntityState.Modified;

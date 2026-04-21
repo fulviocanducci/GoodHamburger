@@ -1,4 +1,5 @@
-﻿using Application.DTOs.Menu;
+﻿using Application.DTOs;
+using Application.DTOs.Menu;
 using Application.Interfaces;
 
 namespace Application.Services;
@@ -12,7 +13,7 @@ public class MenuService(IMenuRepository menuRepository) : IMenuService
         return await menuRepository.CreateAsync(model);
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task<Result> DeleteAsync(int id)
     {
         return await menuRepository.DeleteAsync(id);
     }
@@ -27,7 +28,7 @@ public class MenuService(IMenuRepository menuRepository) : IMenuService
         return await menuRepository.GetAsync(id);
     }
 
-    public async Task<bool> UpdateAsync(MenuUpdate model)
+    public async Task<Result> UpdateAsync(MenuUpdate model)
     {
         return await menuRepository.UpdateAsync(model);
     }
