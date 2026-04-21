@@ -32,3 +32,37 @@ Referências:
 4. Configure a string de conexão no arquivo `appsettings.json` da aplicação na chave `ConnectionStrings:DefaultConnection`, substituindo os valores de usuário, senha e nome do banco de dados conforme necessário.
 5. Dentro do github tem uma pasta SQL, baixe o arquivo SQL `banco.sql` e execute no banco criado no seu banco MySQL. 
 6. Execute o seu projeto na IDE.
+
+### Projeto de Testes Unitários
+
+No projeto existe um projeto unitário de teste com o nome `TestGoodHamburger`. Ele contém testes unitários para as camadas de domínio e aplicação, utilizando o framework de testes xUnit e Moq para mockar dependências.
+
+### O que eu deixo de fora
+- Camada de Apresentação (Frontend) Não sou especialista em frontend, trabalho com ReactJs, KnockoutJs e muito pouco Blazor, meu forte é o backend e Razor Pages, então optei por não incluir uma camada de apresentação para focar no backend e na arquitetura hexagonal.
+- Implementação de APIs externas (ex: serviços de pagamento, envio de email, etc.)
+- Configurações avançadas de segurança e performance (ex: caching, logging, etc.)
+- Documentação detalhada de cada classe e método (embora haja comentários básicos para entendimento geral)
+
+### IA
+
+O projeto foi desenvolvido sem a ajuda de IA, nas seguintes camadas:
+
+- Camada de Compartilhamento (Shared)
+- Camada de Domínio (Domain)
+- Camada de Aplicação (Application)
+- Camada de Infraestrutura (Infrastructure)
+- Camada de Apresentação (WebApi)
+
+Com o auxilio de IA, foram gerados os seguintes items:
+
+- Camada de Testes Unitários (TestGoodHamburger)
+- Readme.md
+
+### Considerações Finais
+Este projeto é uma implementação básica de um sistema de gerenciamento de pedidos para uma hamburgueria, utilizando a arquitetura hexagonal para promover o desacoplamento e a testabilidade. Ele serve como um ponto de partida para quem deseja aprender sobre essa arquitetura e como aplicá-la em projetos reais. Sinta-se à vontade para expandir e melhorar o projeto conforme necessário!
+
+### Imagem do Projeto
+![Imagem do Projeto](/Imagens/imagem1.jpg)
+
+### Autor: Fúlvio Cezar Canducci Dias
+### Contato: fulviocanducci@hotmail.com
