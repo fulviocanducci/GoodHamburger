@@ -1,7 +1,10 @@
 name: Test TestGoodHamburger
 
 on:
+  workflow_dispatch:
   push:
+    tags:
+      - '**'  
     paths:
       - 'TestGoodHamburger/**'
   pull_request:
