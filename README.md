@@ -1,5 +1,9 @@
 # GoodHamburger
 
+![Static Badge](https://img.shields.io/badge/github-repo-blue?style=flat&link=https%3A%2F%2Fgithub.com%2Ffulviocanducci%2FGoodHamburger)
+![Static Badge](https://img.shields.io/badge/build-passing-brightgreen?style=flat&link=https%3A%2F%2Fgithub.com%2Ffulviocanducci%2FGoodHamburger)
+
+
 ## Descrição do Projeto - GoodHamburger
 
 ### Arquitetura de Desenvolvimento - Hexagonal Architecture
