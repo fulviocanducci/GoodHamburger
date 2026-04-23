@@ -1,7 +1,7 @@
 # GoodHamburger
 
 ![Static Badge](https://img.shields.io/badge/github-repo-blue?style=flat&link=https%3A%2F%2Fgithub.com%2Ffulviocanducci%2FGoodHamburger)
-![Static Badge](https://img.shields.io/badge/build-passing-brightgreen?style=flat&link=https%3A%2F%2Fgithub.com%2Ffulviocanducci%2FGoodHamburger)
+[![Test TestGoodHamburger](https://github.com/fulviocanducci/GoodHamburger/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/fulviocanducci/GoodHamburger/actions/workflows/dotnet-desktop.yml)
 
 
 ## Descrição do Projeto - GoodHamburger
